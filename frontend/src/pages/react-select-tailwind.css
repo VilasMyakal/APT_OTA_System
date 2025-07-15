@@ -1,0 +1,41 @@
+/* Tailwind-based react-select dark/light theme overrides */
+
+.react-select__control {
+  @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-md shadow-none min-h-[40px] transition;
+}
+.react-select__control--is-focused {
+  @apply ring-2 ring-blue-200 dark:ring-blue-400 border-blue-400 dark:border-blue-400;
+}
+.react-select__value-container {
+  @apply px-2;
+}
+.react-select__single-value {
+  @apply text-gray-900 dark:text-white;
+}
+.react-select__input-container {
+  @apply text-gray-900 dark:text-white;
+}
+.react-select__placeholder {
+  @apply text-gray-400 dark:text-gray-400;
+}
+.react-select__indicator-separator {
+  @apply bg-gray-200 dark:bg-gray-600;
+}
+.react-select__dropdown-indicator {
+  @apply text-gray-400 dark:text-gray-400;
+}
+.react-select__menu {
+  @apply bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md mt-1 shadow-lg;
+}
+.react-select__option {
+  @apply text-gray-900 dark:text-white bg-white dark:bg-gray-700 cursor-pointer transition;
+}
+.react-select__option--is-focused {
+  @apply bg-gray-100 dark:bg-gray-600;
+}
+.react-select__option--is-selected {
+  @apply bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300;
+}
+.react-select__clear-indicator {
+  @apply text-gray-400 dark:text-gray-400;
+} 
