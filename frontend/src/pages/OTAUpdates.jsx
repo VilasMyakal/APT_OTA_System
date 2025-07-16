@@ -265,7 +265,7 @@ const OTAUpdates = () => {
                     <td className="px-4 py-2">{update.status}</td>
 {/*                       {update.status === 'Success' && <span className="inline-block px-2 py-1 rounded-full bg-green-100 text-green-800 text-xs font-semibold">Successful</span>}
                       {update.status === 'Failed' && <span className="inline-block px-2 py-1 rounded-full bg-red-100 text-red-800 text-xs font-semibold">Unsuccessful</span>}
-                      {update.status === 'In Progress' && <span className="inline-block px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-semibold">Already Updated</span>}
+                      {update.status === 'Other' && <span className="inline-block px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-semibold">Already Updated</span>}
                     </td> */}
                     <td className="px-4 py-2 text-gray-500 dark:text-gray-400">{update.previousVersion}</td>
                     <td className="px-4 py-2 text-gray-900 dark:text-white">{update.updatedVersion}</td>
