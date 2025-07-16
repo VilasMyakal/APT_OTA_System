@@ -86,14 +86,14 @@ const Dashboard = () => {
   const totalFirmwares = selectedDevice
     ? firmwares.filter(fw => fw.esp_id === selectedDevice.value).length
     : 0;
-  const totalSuccess = filteredUpdates.filter(u => u.status === 'Success').length;
-  const totalFailed = filteredUpdates.filter(u => u.status === 'Failed').length;
+  const totalSuccess = filteredUpdates.filter(u => u.normalizedStatus === 'Success').length;
+  const totalFailed = filteredUpdates.filter(u => u.normalizedStatus === 'Failed').length;
 
   // Pie chart data
   const pieData = [
-    { name: 'Success', value: filteredUpdates.filter(u => u.status === 'Success').length, color: '#10B981' },
-    { name: 'Failed', value: filteredUpdates.filter(u => u.status === 'Failed').length, color: '#EF4444' },
-    { name: 'Already Updated', value: filteredUpdates.filter(u => u.status === 'In Progress').length, color: '#F59E0B' },
+    { name: 'Success', value: filteredUpdates.filter(u => u.normalizedStatus === 'Success').length, color: '#10B981' },
+    { name: 'Failed', value: filteredUpdates.filter(u => u.normalizedStatus === 'Failed').length, color: '#EF4444' },
+    { name: 'Already Updated', value: filteredUpdates.filter(u => u.normalizedStatus === 'In Progress').length, color: '#F59E0B' },
   ];
 
   // Bar chart data
@@ -109,8 +109,8 @@ const Dashboard = () => {
         const dayUpdates = filteredUpdates.filter(u => (u.date || u.createdAt || '').slice(0, 10) === dayStr);
         return {
           name: day.toLocaleDateString(undefined, { weekday: 'short' }),
-          Success: dayUpdates.filter(u => u.status === 'Success').length,
-          Failed: dayUpdates.filter(u => u.status === 'Failed').length,
+          Success: dayUpdates.filter(u => u.normalizedStatus === 'Success').length,
+          Failed: dayUpdates.filter(u => u.normalizedStatus === 'Failed').length,
         };
       });
     } else if (timeRange === '30d') {
@@ -127,8 +127,8 @@ const Dashboard = () => {
         });
         return {
           name: `Week ${i + 1}`,
-          Success: weekUpdates.filter(u => u.status === 'Success').length,
-          Failed: weekUpdates.filter(u => u.status === 'Failed').length,
+          Success: weekUpdates.filter(u => u.normalizedStatus === 'Success').length,
+          Failed: weekUpdates.filter(u => u.normalizedStatus === 'Failed').length,
         };
       });
     } else if (timeRange === '90d') {
@@ -145,8 +145,8 @@ const Dashboard = () => {
         });
         return {
           name: month.toLocaleString(undefined, { month: 'short' }),
-          Success: monthUpdates.filter(u => u.status === 'Success').length,
-          Failed: monthUpdates.filter(u => u.status === 'Failed').length,
+          Success: monthUpdates.filter(u => u.normalizedStatus === 'Success').length,
+          Failed: monthUpdates.filter(u => u.normalizedStatus === 'Failed').length,
         };
       });
     }
