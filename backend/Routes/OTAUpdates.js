@@ -18,7 +18,16 @@ Router.post('/', async (req, res) => {
     if (!pic_id || !deviceId || !status || !previousVersion || !updatedVersion) {
       return res.status(400).json({ message: 'All fields are required' });
     }
-    const newUpdate = new OTAUpdate({ pic_id, deviceId, status, previousVersion, updatedVersion });
+    // Normalize status
+    let normalizedStatus = 'Failed';
+    if (status === 'Programming Successfull') {
+      normalizedStatus = 'Success';
+    }else if (status === 'Programming Unsuccessful') {
+      normalizedStatus = 'Failed';
+    }else{
+      normalizedStatus = 'In Progress';
+    }
+    const newUpdate = new OTAUpdate({ pic_id, deviceId, status, normalizedStatus, previousVersion, updatedVersion });
     await newUpdate.save();
     res.status(201).json(newUpdate);
   } catch (err) {
