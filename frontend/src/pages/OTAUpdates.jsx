@@ -79,8 +79,8 @@ const OTAUpdates = () => {
   const totalUpdatesPages = Math.ceil(filteredUpdates.length / UPDATES_PER_PAGE);
 
   // Summary counts
-  const successCount = filteredUpdates.filter(u => u.status === 'Success').length;
-  const failedCount = filteredUpdates.filter(u => u.status === 'Failed').length;
+  const successCount = filteredUpdates.filter(u => u.normalizedStatus === 'Success').length;
+  const failedCount = filteredUpdates.filter(u => u.normalizedStatus === 'Failed').length;
 
   // --- UI helpers for pill badges ---
   const getDeviceStatusBadge = (status) => {
@@ -262,11 +262,11 @@ const OTAUpdates = () => {
                   <tr key={update._id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                     <td className="px-4 py-2 text-gray-900 dark:text-white">{update.pic_id}</td>
                     <td className="px-4 py-2 text-gray-900 dark:text-white">{update.deviceId}</td>
-                    <td className="px-4 py-2">{update.status}</td>
-{/*                       {update.status === 'Success' && <span className="inline-block px-2 py-1 rounded-full bg-green-100 text-green-800 text-xs font-semibold">Successful</span>}
-                      {update.status === 'Failed' && <span className="inline-block px-2 py-1 rounded-full bg-red-100 text-red-800 text-xs font-semibold">Unsuccessful</span>}
-                      {update.status === 'Other' && <span className="inline-block px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-semibold">Already Updated</span>}
-                    </td> */}
+                    <td className="px-4 py-2">
+                      {update.normalizedStatus === 'Success' && <span className="inline-block px-2 py-1 rounded-full bg-green-100 text-green-800 text-xs font-semibold">{update.status}</span>}
+                      {update.normalizedStatus === 'Failed' && <span className="inline-block px-2 py-1 rounded-full bg-red-100 text-red-800 text-xs font-semibold">{update.status}</span>}
+                      {update.normalizedStatus === 'In Progress' && <span className="inline-block px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-semibold">{update.status}</span>}
+                    </td>
                     <td className="px-4 py-2 text-gray-500 dark:text-gray-400">{update.previousVersion}</td>
                     <td className="px-4 py-2 text-gray-900 dark:text-white">{update.updatedVersion}</td>
                     <td className="px-4 py-2 text-gray-500 dark:text-gray-400">{update.date ? new Date(update.date).toLocaleString() : ''}</td>
